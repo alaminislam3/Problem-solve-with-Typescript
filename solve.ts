@@ -34,11 +34,11 @@ class Person {
     this.age = age;
   }
   getDetails() {
-    return `"Name: ${this.name}, Age : ${this.age}"`;
+    return `'Name: ${this.name}, Age : ${this.age}'`;
   }
 }
 
-// const newPerson = new Person('rani', 20)
+const newPerson = new Person('rani', 20)
 // console.log(newPerson.getDetails())
 
 /* provlem 04 */
@@ -90,9 +90,9 @@ interface Book {
 }
 
 function printBookDetails(myBook: Book): void {
-  console.log(
-    `Title: ${myBook.title}, Author: ${myBook.author},Published: ${myBook.publishedYear},Available: ${myBook.isAvailable}`
-  );
+//   console.log(
+//     `Title: ${myBook.title}, Author: ${myBook.author},Published: ${myBook.publishedYear},Available: ${myBook.isAvailable}`
+//   );
 }
 
 const myBook: Book = {
@@ -104,3 +104,52 @@ const myBook: Book = {
 printBookDetails(myBook);
 // Title: The Great Gatsby, Author: F. Scott Fitzgerald, Published: 1925, Available: Yes
 
+/* Problem 7 */
+
+const getUniqueValues = (array1: number[], array2 : number[]) => {
+    let finalArray: any [] = []
+    let mergedArray = [...array1, ...array2]
+     for(let i =0; i < mergedArray.length; i ++){
+       let z  = mergedArray[i]
+       if(!finalArray.includes(z)){
+        finalArray.push(z)
+       }
+     }
+     return finalArray
+}
+
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
+// console.log(getUniqueValues(array1, array2));       
+
+/* Problem 8 */
+
+type ProductsKini = {
+    name : string;
+    price : number;
+    quantity : number;
+    discount? : number
+}
+
+const calculateTotalPrice = (value : ProductsKini [])  => {
+     let result = value.map((singpro)=> {
+       let totalTaka = singpro.price * singpro.quantity 
+       let fakaArray = []
+       if(singpro.discount){
+          let discount = totalTaka * (singpro.discount / 100)
+          let totalAmmount = totalTaka  - discount
+          fakaArray.push(totalAmmount)
+            
+        } 
+        
+        
+      })
+}
+
+const products = [
+  { name: 'Pen', price: 10, quantity: 2 },
+  { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
+  { name: 'Bag', price: 50, quantity: 1, discount: 20 },
+];
+
+console.log(calculateTotalPrice(products));
